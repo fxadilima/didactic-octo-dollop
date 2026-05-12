@@ -1,0 +1,55 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Alessandra</h1>
+			<p>
+				Selamat bergabung dengan penulisan novel menggunakan template blog sederhana yang 
+				isinya ditulis dalam format markdown. Template ini dirancang untuk membantu Anda
+				memulai dengan cepat, sehingga Anda dapat fokus pada menulis cerita Anda 
+				tanpa harus khawatir tentang pengaturan teknis.
+			</p>
+			<p>
+				Isi cerita yang dipakai adalah cerita silat hasil karya saya sendiri, yang diambil dari
+				bagian akhir karya legendaris Jin Yong, yaitu "Heavenly Sword and Dragon Slaying Saber" 
+				atau "Yitian Tulong Ji (倚天屠龙记)", biasa diterjemahkan ke dalam bahasa Indonesia menjadi
+				"Kisah Pedang Langit Dan Golok Pembunuh Naga". Cerita ini dipilih karena memiliki alur 
+				yang menarik dan karakter yang kuat, sehingga dapat memberikan inspirasi bagi penulisan novel.
+			</p>
+			<p>
+				Karena saya sendiri memilih template blog dalam instalasi awal, maka beberapa gagasan berikut
+				bisa dijadikan inspirasi untuk mulai menulis novel Anda sendiri:
+			</p>
+			<ul>
+				<li>Edit page <code>src/pages/index.astro</code></li>
+				<li>Edit <em>site header items</em> di <code>src/components/Header.astro</code></li>
+				<li>Tambahkan nama Anda sendiri di bagian footer <code>src/components/Footer.astro</code></li>
+				<li>Perhatikan baik-baik blog posts di folder <code>src/content/blog/</code></li>
+				<li>Ubah blog post page layout di <code>src/layouts/BlogPost.astro</code></li>
+				<li>Ikuti pembahasan saya mengenai topik-topik di atas di <a href="/blog">blog saya</a></li>
+			</ul>
+			<p>
+				Have fun! If you get stuck, remember to
+				<a href="https://docs.astro.build/">read the docs</a>
+				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
+			</p>
+			<p>
+				Looking for a blog template with a bit more personality? Check out
+				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
+				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>

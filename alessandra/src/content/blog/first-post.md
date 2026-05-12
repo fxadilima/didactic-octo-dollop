@@ -20,7 +20,9 @@ pubDate: 'May 12 2026'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 ```
 
-Karena contoh novel di dalam repository saya di [GitHub]() adalah mengenai kisah seorang anak perempuan bernama Alessandra, langkah pertama saya adalah mengganti image "blog-placeholder3.jpg" di atas dengan gambar yang lebih sesuai dengan tema cerita, yaitu gambar gadis kecil itu sendiri.
+Karena contoh novel di dalam repository saya di [GitHub](https://github.com/fxadilima/didactic-osto-dollop) adalah mengenai kisah seorang anak perempuan bernama Alessandra, langkah pertama saya adalah mengganti image "blog-placeholder3.jpg" di atas dengan gambar yang lebih sesuai dengan tema cerita, yaitu gambar gadis kecil itu sendiri.
+
+Jika ingin segera membaca ceritanya, kalian bisa mulai dari [bagian Sinopsis](/novel/), semua link yang menghubungkan cerita ada di dalamnya.
 
 Selanjutnya kita telsuri bagaimana _layout_ halaman ini sendiri disusun. Jika kita perhatikan _outline_ atau struktur direktori yang dibuat oleh `Astro`, maka kita akan menemukan sebuah folder yang bernama "layouts", dan di situ (bagi kita yang memilih template Blog) hanya ada sebuah file yang bernama "BlogPost.astro", dengan isi utama seperti ini:
 

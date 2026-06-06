@@ -1,0 +1,96 @@
+---
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const allChapters = await getCollection('book');
+  
+  // Saring file yang tidak punya data book atau chapter (seperti Prakata) agar tidak eror
+  const validChapters = allChapters.filter(ch => ch.data.book !== undefined && ch.data.chapter !== undefined);
+
+  return validChapters.map((ch) => ({
+    params: {
+      // Mengubah angka 1 menjadi teks string untuk URL
+      bookNumber: String(ch.data.book),       
+      chapterNumber: String(ch.data.chapter)
+    },
+    props: { chapter: ch },
+  }));
+}
+
+const {chapter} = Astro.props;
+const frontmatter = chapter.data;
+const { Content } = await render(chapter);
+const imgPath = frontmatter.image ? frontmatter.image : "/images/default-binghuo-dao-1331.jpg";
+
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{frontmatter.title}</title>
+        <meta name="description" content={frontmatter.description}>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="w3-top">
+            <div class="w3-bar w3-black w3-card-4">
+                <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i></a>
+                <a href="/book/1/1" class="w3-bar-item w3-button w3-hide-small">Book I</a>
+                <a href="/book/2/1" class="w3-bar-item w3-button w3-hide-small">Book II</a>
+                <a href="/book/3/1" class="w3-bar-item w3-button w3-hide-small">Book III</a>
+                <a href="/book/4/1" class="w3-bar-item w3-button w3-hide-small">Book IV</a>
+                <a href="/book/5/1" class="w3-bar-item w3-button w3-hide-small">Book V</a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="tombol">&#9776;</a>
+            </div>
+
+            <div id="demo" class="w3-padding-large w3-card-4 w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium">
+                <a href="/book/1/1" class="w3-bar-item w3-button">Book I</a>
+                <a href="/book/2/1" class="w3-bar-item w3-button">Book II</a>
+                <a href="/book/3/1" class="w3-bar-item w3-button">Book III</a>
+                <a href="/book/4/1" class="w3-bar-item w3-button">Book IV</a>
+                <a href="/book/5/1" class="w3-bar-item w3-button">Book V</a>
+            </div>
+        </div>
+
+        <main class="w3-container w3-padding-64" id="main" aria-label="Content">
+
+            <header class="w3-container w3-center">
+                <img src={imgPath}
+                    alt="feature image"
+                    class="w3-image w3-round-large"
+                    style="width:100%" />
+            </header>
+            
+            <div class="w3-content">
+                <Content />
+            </div>
+
+            <footer>
+                <p>Copyright, &copy; 2026 FX. Adi Lima</p>
+            </footer>
+        </main>
+        <script>
+            const tombol = document.getElementById("tombol");
+            tombol?.addEventListener('click', () => {
+                const x = document.getElementById("demo");
+                if (x) {
+                    if (x.className.indexOf("w3-show") == -1) {
+                        x.className += " w3-show";
+                    } else { 
+                        x.className = x.className.replace(" w3-show", "");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

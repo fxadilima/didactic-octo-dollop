@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
   const allChapters = await getCollection('book');
-  
+
   // Saring file yang tidak punya data book atau chapter (seperti Prakata) agar tidak eror
   const validChapters = allChapters.filter(ch => ch.data.book !== undefined && ch.data.chapter !== undefined);
 
@@ -20,6 +20,24 @@ const {chapter} = Astro.props;
 const frontmatter = chapter.data;
 const { Content } = await render(chapter);
 const imgPath = frontmatter.image ? frontmatter.image : "/images/default-binghuo-dao-1331.jpg";
+
+const allPosts = Object.values(import.meta.glob('../../../content/book/**/*.mdx', {
+    eager: true
+}));
+
+const currentBook = frontmatter.book;
+const nextChapter = Number(frontmatter.chapter) + 1;
+// Kita periksa apakah ada bab berikutnya untuk buku yang sama di dalam kumpulan posts
+let hasNextChapter = allPosts.some((post: any) => {
+    if (post.frontmatter.book === currentBook && Number(post.frontmatter.chapter) === nextChapter) {
+        return true;        
+    }
+    return false;
+});
+
+const nextPath = hasNextChapter ? `/book/${frontmatter.book}/${nextChapter.toString()}` : null;
+const prevChapter = Number(frontmatter.chapter) - 1;
+const prevPath = (prevChapter > 0) ? `/book/${frontmatter.book}/${prevChapter.toString()}` : null;
 
 ---
 
@@ -73,6 +91,18 @@ const imgPath = frontmatter.image ? frontmatter.image : "/images/default-binghuo
             
             <div class="w3-content">
                 <Content />
+
+                <hr />
+
+                <div class="w3-bar w3-center">
+                    {prevPath && (
+                        <a class="w3-btn w3-round w3-border" href={prevPath}><i class="fa fa-arrow-left"></i> Prev</a>
+                    )}
+                    {nextPath && (
+                        <a class="w3-btn w3-round w3-border" href={nextPath}>Next <i class="fa fa-arrow-right"></i></a>
+                    )}
+                </div>
+
             </div>
 
             <footer>

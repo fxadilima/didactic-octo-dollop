@@ -1,4 +1,18 @@
 {
+  "name": "cersil",
+  "version": "0.0.1",
+  "exports": "./dist/server/entry.mjs",
+  "tasks": {
+    "dev": "deno run -A npm:astro dev",
+    "build": "deno run -A npm:astro build",
+    "preview": "deno run -A --allow-env dist/server/entry.mjs",
+    "astro": "deno run -A npm:astro"
+  },
+  "imports": {
+    "@astrojs/deno": "npm:@astrojs/deno@^5.0.1",
+    "@astrojs/mdx": "npm:@astrojs/mdx@^6.0.2",
+    "astro": "npm:astro@^6.4.4"
+  },
   "allowScripts": {
     "allow": [],
     "deny": ["npm:esbuild@0.27.7", "npm:sharp@0.34.5"]

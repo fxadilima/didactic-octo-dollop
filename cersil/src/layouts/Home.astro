@@ -7,21 +7,16 @@ const frontmatter = Astro.props;
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<link rel="stylesheet" href="https://w3schools.com/w3css/5/w3.css" />
+		<link rel="stylesheet" href="/styles/books-dimmed.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{frontmatter.title}</title>
         <meta name="description" content="{frontmatter.description}" />
         <meta name="author" content="{frontmatter.author}" />
-        <style>
-            body {
-                background-color: #121212;
-                color: #a1a1a1;
-            }
-        </style>
 	</head>
-	<body>
-        <main class="w3-main w3-container w3-padding">
+	<body class="w3-theme-d1">
+        <main class="w3-main">
+            <!--
             <header class="w3-container w3-center">
                 <div class="w3-container">
                     <h1>{frontmatter.title}</h1>
@@ -34,9 +29,11 @@ const frontmatter = Astro.props;
                 </div>
             </header>
             <hr />
-            <div class="w3-panel w3-content">
+             -->
+            <div class="w3-content">
                 <slot />
             </div>
+            <img src={frontmatter.image} alt="Banner Image" style="width:100%" />
         </main>
 	</body>
 </html>

@@ -5,7 +5,7 @@
   "tasks": {
     "dev": "deno run -A npm:astro dev",
     "build": "deno run -A npm:astro build",
-    "preview": "deno run -A npm:astro preview",
+    "preview": "deno run -A dist/server/entry.mjs",
     "astro": "deno run -A npm:astro"
   },
   "imports": {
